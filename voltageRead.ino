@@ -1,5 +1,3 @@
-#inlcude <Servo.h>
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -13,6 +11,7 @@ void loop() {
   // This line converts the analog input of the arduino to voltage 
   float voltage = ((5.0 * analogIn)/1023.0);
 
-  // Prints voltage input to terminal
+  // Prints voltage input to terminal. Make sure you open the serial by going to Tools > Serial Monitor
   Serial.println(voltage);
+  delay(500);
 }
