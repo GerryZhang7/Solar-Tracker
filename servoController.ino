@@ -51,18 +51,22 @@ void loop() {
   if (voltage > voltage1 && voltage > voltage2 && voltage > voltage3) {
     servo.write(pos);
     ++pos;
+    delay(5);
   }
     if (voltage1 > voltage && voltage1 > voltage2 && voltage1 > voltage3) {
     servo.write(pos);
     ++pos;
+    delay(5);
   }
     if (voltage2 > voltage && voltage2 > voltage1 && voltage2 > voltage3) {
     servo.write(pos);
     --pos;
+    delay(5);
   }
     if (voltage3 > voltage && voltage3 > voltage1 && voltage3 > voltage2) {
     servo.write(pos);
     --pos;
+    delay(5);
   }
   
   /*

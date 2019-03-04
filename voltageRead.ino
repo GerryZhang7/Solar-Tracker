@@ -21,7 +21,6 @@ int readVoltage() {
   // Prints voltage input to terminal. Make sure you open the serial by going to Tools > Serial Monitor
   Serial.println ("Photodiode 1");
   Serial.println (voltage);
-  delay(500);
 
   return voltage;
 }
@@ -36,7 +35,6 @@ int readVoltage1() {
   // Prints voltage input to terminal. Make sure you open the serial by going to Tools > Serial Monitor
   Serial.println ("Photodiode 2");
   Serial.println(voltage1);
-  delay(500);
 
   return voltage1;
 }
@@ -47,27 +45,18 @@ void loop() {
     int voltage1;
     voltage = readVoltage();
     voltage1 = readVoltage1();
-  for (pos = 0; voltage > voltage1; ++pos) {
+  while (voltage > voltage1) {
     voltage = readVoltage();
     voltage1 = readVoltage1();
-    servo.write(pos);
-    delay(5);
-  }
-  for (pos = 180; voltage1 > voltage; --pos) {
-    voltage = readVoltage();
-    voltage1 = readVoltage1();
-    servo.write(pos);
-    delay(5);
-  }
-  /*
-  if (voltage > voltage1) {
     servo.write(pos);
     ++pos;
-    delay(5);      
+    delay(5);
   }
-  else if (voltage1 > voltage) {
+  while (voltage1 > voltage) {
+    voltage = readVoltage();
+    voltage1 = readVoltage1();
     servo.write(pos);
     --pos;
     delay(5);
-  }*/
+  }
 }
