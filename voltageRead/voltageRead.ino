@@ -2,7 +2,9 @@
 
 Servo servo;
 
-int pos = 0;
+int pos = 90;
+float voltage;
+float voltage1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,7 +13,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-int readVoltage() {
+float readVoltage() {
    // This line will read the input voltage of the photodiode. 
   int analogIn = analogRead(A0);
 
@@ -25,7 +27,7 @@ int readVoltage() {
   return voltage;
 }
 
-int readVoltage1() {
+float readVoltage1() {
     // This line will read the input voltage of the photodiode. 
   int analogIn1 = analogRead(A1);
 
@@ -41,22 +43,20 @@ int readVoltage1() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-    int voltage;
-    int voltage1;
     voltage = readVoltage();
     voltage1 = readVoltage1();
-  while (voltage > voltage1) {
-    voltage = readVoltage();
-    voltage1 = readVoltage1();
-    servo.write(pos);
+
+  /*Resets the motor to zero position once it's night
+  if(abs(voltage - voltage1) < 0.05 && voltage < 0.1) {
+    //servo.write(0);
+  }*/
+  
+  if( (voltage - voltage1) > 0.01) {
     ++pos;
-    delay(5);
   }
-  while (voltage1 > voltage) {
-    voltage = readVoltage();
-    voltage1 = readVoltage1();
-    servo.write(pos);
+  if ( (voltage1 - voltage) > 0.01) {
     --pos;
-    delay(5);
   }
+  servo.write(pos);
+  delay(5);
 }

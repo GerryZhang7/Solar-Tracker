@@ -69,7 +69,6 @@ void loop() {
     delay(5);
   }
   
-  /*
   for (pos = 0; pos <= 180; ++pos) {
     servo.write(pos);
     delay(5); // Delay in milliseconds. Not quite too sure about the actual speed we want. Previously set to 20 
@@ -77,5 +76,5 @@ void loop() {
   for (pos = 180; pos >= 0; --pos){
     servo.write(pos);
     delay(5);
-  }*/
+  }
 } 
