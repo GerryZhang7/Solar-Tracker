@@ -46,16 +46,19 @@ void loop() {
     voltage = readVoltage();
     voltage1 = readVoltage1();
 
-  /*Resets the motor to zero position once it's night
-  if(abs(voltage - voltage1) < 0.05 && voltage < 0.1) {
-    //servo.write(0);
-  }*/
-  
-  if( (voltage - voltage1) > 0.01) {
-    ++pos;
+  if( (voltage - voltage1) > 0.03 && voltage < 0.1){
+    servo.write(90);
   }
-  if ( (voltage1 - voltage) > 0.01) {
-    --pos;
+  
+  if( (voltage - voltage1) > 0.1) {
+    if(pos < 189){
+     ++pos; 
+    }
+  }
+  if ( (voltage1 - voltage) > 0.1) {
+    if(pos > 0){
+     --pos; 
+    }
   }
   servo.write(pos);
   delay(5);
