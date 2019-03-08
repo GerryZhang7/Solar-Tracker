@@ -46,16 +46,16 @@ void loop() {
     voltage = readVoltage();
     voltage1 = readVoltage1();
 
-  if( (voltage - voltage1) > 0.03 && voltage < 0.1){
+  /*if( (voltage - voltage1) > 0.03 && voltage < 0.1){
     servo.write(90);
-  }
+  }*/
   
-  if( (voltage - voltage1) > 0.1) {
+  if( (voltage - voltage1) > 0.65) {
     if(pos < 189){
      ++pos; 
     }
   }
-  if ( (voltage1 - voltage) > 0.1) {
+  if ( (voltage1 - voltage) > 0.65) {
     if(pos > 0){
      --pos; 
     }
